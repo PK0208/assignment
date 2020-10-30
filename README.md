@@ -1,5 +1,6 @@
 # assignment
 
+#git clone project or download zip.
 
 #install nodemodules
 npm install
