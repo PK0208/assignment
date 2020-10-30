@@ -5,6 +5,7 @@ exports.createUser = (req, res, next) => {
         name: req.body.name,
         mobile: req.body.mobile,
         email: req.body.email,
+        password: req.body.password,
         address: {
             street: req.body.address.street,
             locality: req.body.addresslocality,
@@ -72,6 +73,7 @@ exports.updateUser = (req, res, next) => {
         name: req.params.name,
         mobile: req.body.mobile,
         email: req.body.email,
+        password: req.body.password,
         address: {
             street: req.body.address.street,
             locality: req.body.addresslocality,

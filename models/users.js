@@ -5,13 +5,14 @@ const user = new mongoose.Schema({
     name: {
         type: String
     },
-
     mobile: {
         type: String,
         unique: true,
     },
-
     email: {
+        type: String
+    },
+    password: {
         type: String
     },
     address: {
