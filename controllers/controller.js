@@ -1,25 +1,6 @@
-const express = require('express');
-const router = express.Router();
+const user = require('../models/users');
 
-//const User = require('./models/users');
-
-const User = require('../models/users');
-const userController = require('../controllers/controller');
-
-
-//Create New User
-
-router.post('/newUser', userController.createUser);
-router.get('/allUsers', userController.getAllusers);
-router.get('/allUsers/:name', userController.getUser);
-router.put('/allUsers/:name', userController.updateUser);
-router.delete('/allUsers/:name', userController.deleteUser);
-router.get('/usersSortedByCreatedAt', userController.getUserByCreatedAt);
-router.get('/usersByCoordinates', userController.getUserByCoordinates);
-
-//updateUser
-
-/* router.post('/newUser', (req, res, next) => {
+exports.createUser = (req, res, next) => {
     const user = new User({
         name: req.body.name,
         mobile: req.body.mobile,
@@ -50,11 +31,10 @@ router.get('/usersByCoordinates', userController.getUserByCoordinates);
         }
     )
 
-}) */
+}
 
-//Get All users
 
-/* router.get('/allUsers', (req, res, next) => {
+exports.getAllusers = (req, res, next) => {
     User.find().then(
         (users) => {
             res.status(200).json(users);
@@ -66,11 +46,10 @@ router.get('/usersByCoordinates', userController.getUserByCoordinates);
             })
         }
     )
-}) */
+}
 
-//Get user by specific name
 
-/* router.get('/allUsers/:name', (req, res, next) => {
+exports.getUser = (req, res, next) => {
     User.findOne({
         name: req.params.name
     }).then(
@@ -84,11 +63,10 @@ router.get('/usersByCoordinates', userController.getUserByCoordinates);
             })
         }
     )
-}) */
+}
 
-//Update the existing user
 
-/* router.put('/allUsers/:name', (req, res, next) => {
+exports.updateUser = (req, res, next) => {
     console.log('Update by One');
     const user = new User({
         name: req.params.name,
@@ -129,11 +107,9 @@ router.get('/usersByCoordinates', userController.getUserByCoordinates);
         }
     )
 
-}) */
+}
 
-//Deleting the user
-
-/* router.delete('/allUsers/:name', (req, res, next) => {
+exports.deleteUser = (req, res, next) => {
     User.deleteOne({
         name: req.params.name
     }).then(
@@ -149,11 +125,9 @@ router.get('/usersByCoordinates', userController.getUserByCoordinates);
             })
         }
     )
-}) */
+}
 
-//Get all users with created at sorted by and pagination
-
-/* router.get('/usersSortedByCreatedAt', (req, res, next) => {
+exports.getUserByCreatedAt = (req, res, next) => {
 
     var pageNo = parseInt(req.query.pageNo)
     var size = parseInt(req.query.size)
@@ -178,11 +152,9 @@ router.get('/usersByCoordinates', userController.getUserByCoordinates);
                 })
             }
         )
-})
- */
-//Get all users sorted by distance
-/* 
-router.get('/usersByCoordinates', (req, res, next) => {
+}
+
+exports.getUserByCoordinates = (req, res, next) => {
     const long = req.query.long;
     const lat = req.query.lat;
 
@@ -207,6 +179,4 @@ router.get('/usersByCoordinates', (req, res, next) => {
 
     });
 
-}) */
-
-module.exports = router;
+}
