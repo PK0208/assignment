@@ -1,21 +1,14 @@
 const express = require('express');
-const app = express();
-
-const connectDb = require('./DB/Connection');
-connectDb();
+const router = express.Router();
 
 //const User = require('./models/users');
 
-const userRoutes = require('./routes/routes');
+const User = require('../models/users');
 
-
-app.use(express.json({ extended: false }))
-
-app.use('/api', userRoutes);
 
 //Create New User
 
-/* app.post('/api/newUser', (req, res, next) => {
+router.post('/newUser', (req, res, next) => {
     const user = new User({
         name: req.body.name,
         mobile: req.body.mobile,
@@ -46,11 +39,11 @@ app.use('/api', userRoutes);
         }
     )
 
-}) */
+})
 
 //Get All users
 
-/* app.get('/api/allUsers', (req, res, next) => {
+router.get('/allUsers', (req, res, next) => {
     User.find().then(
         (users) => {
             res.status(200).json(users);
@@ -62,11 +55,11 @@ app.use('/api', userRoutes);
             })
         }
     )
-}) */
+})
 
 //Get user by specific name
 
-/* app.get('/api/allUsers/:name', (req, res, next) => {
+router.get('/allUsers/:name', (req, res, next) => {
     User.findOne({
         name: req.params.name
     }).then(
@@ -80,11 +73,11 @@ app.use('/api', userRoutes);
             })
         }
     )
-}) */
+})
 
 //Update the existing user
 
-/* app.put('/api/allUsers/:name', (req, res, next) => {
+router.put('/allUsers/:name', (req, res, next) => {
     console.log('Update by One');
     const user = new User({
         name: req.params.name,
@@ -104,7 +97,7 @@ app.use('/api', userRoutes);
     var myValues = { name: req.params.name };
     var newvalues = {
         $set: {
-            name: req.params.name,
+            name: req.params.body,
             mobile: req.body.mobile,
             email: req.body.email, address: req.body.address,
         }
@@ -125,11 +118,11 @@ app.use('/api', userRoutes);
         }
     )
 
-}) */
+})
 
 //Deleting the user
 
-/* app.delete('/api/allUsers/:name', (req, res, next) => {
+router.delete('/allUsers/:name', (req, res, next) => {
     User.deleteOne({
         name: req.params.name
     }).then(
@@ -145,11 +138,11 @@ app.use('/api', userRoutes);
             })
         }
     )
-}) */
+})
 
 //Get all users with created at sorted by and pagination
 
-/* app.get('/api/usersSortedByCreatedAt', (req, res, next) => {
+router.get('/usersSortedByCreatedAt', (req, res, next) => {
 
     var pageNo = parseInt(req.query.pageNo)
     var size = parseInt(req.query.size)
@@ -174,11 +167,11 @@ app.use('/api', userRoutes);
                 })
             }
         )
-}) */
+})
 
 //Get all users sorted by distance
 
-/* app.get('/api/usersByCoordinates', (req, res, next) => {
+router.get('/usersByCoordinates', (req, res, next) => {
     const long = req.query.long;
     const lat = req.query.lat;
 
@@ -203,10 +196,6 @@ app.use('/api', userRoutes);
 
     });
 
-}) */
+})
 
-
-const Port = process.env.Port || 3000;
-
-app.listen(Port, () => console.log('Server Started on Port', Port));
-
+module.exports = router;
